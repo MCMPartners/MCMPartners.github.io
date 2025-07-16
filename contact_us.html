@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | MCM Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary-blue: #0a2947;
+      --accent-blue: #2563eb;
+      --light-grey: #f8fafc;
+      --medium-grey: #64748b;
+      --dark-grey: #1e293b;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: var(--light-grey);
+      color: var(--dark-grey);
+      padding-top: 80px;
+    }
+
+
+/* Header */
+header {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 20px 5%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-family: 'Canela Light';
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.navbar {
+  background-color: #0a2947;
+  padding: 12px 0; /* Adjusted for mobile */
+  font-family: 'Canela Light';
+  /* removed float; flexbox will handle positioning */
+}
+
+.navbar ul a:hover, .navbar ul li a:hover {
+       color: var(--accent-blue); 
+    }
+
+/* Desktop nav menu */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu > li {
+  position: relative;
+  appearance: none;
+}
+
+.nav-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  top: 100%;
+  right: 0;
+  min-width: 180px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 999;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  color: #0a2947;
+  padding: 10px 15px;
+  font-weight: 400;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* --- MOBILE RESPONSIVE CHANGES --- */
+@media (max-width: 768px) {
+  .header-content {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    flex: 1 1 auto;
+    /* Optional: center on very small */
+  }
+
+  .tagline {
+    font-size: 0.8rem;
+    margin-top: 0;
+    color: #a0aec0;
+  }
+
+  .navbar {
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Stack nav vertically & make collapsible */
+  .nav-menu {
+    flex-direction: column;
+    gap: 0;
+    background-color: var(--primary-blue);
+    display: none; /* Hide by default on mobile */
+    width: 100%;
+  }
+
+  /* Show nav menu when active (controlled by JS) */
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-menu > li {
+    border-bottom: 1px solid #2563eb;
+  }
+
+  .nav-menu a {
+    padding: 12px 20px;
+    font-weight: 600;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background-color: var(--primary-blue);
+    min-width: auto;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;  /* Disable hover dropdown on mobile since hover doesn’t work */
+  }
+
+  /* Add a hamburger menu button */
+  .menu-toggle {
+  display: block; /* show on mobile */
+  position: fixed; /* or absolute if you prefer */
+  top: 20px;       /* adjust vertical position */
+  right: 20px;     /* put it on the right side */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  z-index: 1100;   /* above header content */
+  padding: 8px;    /* enough padding for tap targets */
+}
+
+}
+
+
+/* Hide hamburger on desktop */
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+    .contact-section {
+      padding: 100px 5%;
+      background: var(--white);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+      justify-content: center;
+    }
+
+    .contact-info, .contact-form {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+    }
+
+    .contact-info h2,
+    .contact-form h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-blue);
+    }
+
+    .contact-info p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    .contact-info strong {
+      display: block;
+      margin-top: 1.5rem;
+      color: var(--accent-blue);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    input,
+    textarea {
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px;
+      background: var(--primary-blue);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--accent-blue);
+    }
+
+        /* Footer styles */
+        footer {
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 60px 5% 30px;
+      text-align: center;
+    }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .contact-item h4 {
+      font-family: 'Canela Light';
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .footer-nav {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .footer-nav ul {
+      list-style: none;
+      padding: 0;
+      display: inline-flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .footer-nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    .footer-nav ul li a:hover { color: var(--accent-blue); }
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div>
+        <a href="index.html" class="logo">MCM Partners</a>
+        <div class="tagline">Licensed • 25+ Years • Performance-Driven</div>
+      </div>
+  
+      <!-- Hamburger toggle button for mobile -->
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <nav class="navbar" id="primary-navigation">
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a href="capital_markets.html">Capital Markets</a>
+            <ul class="dropdown-menu">
+              <li><a href="private_placements.html">Private Placements</a></li>
+              <li><a href="ipos.html">Initial Public Offerings</a></li>
+              <li><a href="secondaries.html">Secondaries</a></li>
+              <li><a href="block_trades.html">Block Trades</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="asset_management.html">Asset Management</a>
+            <ul class="dropdown-menu">
+              <li><a href="ccf.html">Commodity Credit Fund</a></li>
+              <li><a href="exclusive_funds.html">Exclusive Funds</a></li>
+            </ul>
+          </li>
+          <li><a href="wealth.html">Wealth</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact_us.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="contact-section">
+    <div class="contact-info">
+      <h2>Contact Us</h2>
+      <p><strong>Address:</strong><br>
+        Henley Building, Suite 701, 7/F<br>
+        5 Queen's Road Central, Central, Hong Kong SAR
+      </p>
+      <p><strong>Email:</strong><br>info@mcmpartners.com</p>
+      <p><strong>Phone:</strong><br>+852 1234 5678</p>
+      <p><strong>Office Hours:</strong><br>Monday - Friday, 9am - 6pm</p>
+    </div>
+
+    <div class="contact-form">
+      <h2>Send a Message</h2>
+      <form action="#" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="subject" placeholder="Subject" />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-row">
+  
+        <!-- Contact Information -->
+        <div class="footer-contact">
+          <div class="contact-item">
+            <h4>Address</h4>
+            <p>Henley Building, Suite 701, 7/F,</p>
+            <p>5 Queen's Road Central, Central<br>Hong Kong SAR</p>
+          </div>
+          <div class="contact-item">
+            <h4>Email</h4>
+            <p>info@mcmpartners.com</p>
+          </div>
+          <div class="contact-item">
+            <h4>Phone</h4>
+            <p>+852 2210 0888</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-row">
+              <!-- Footer Navigation Bar -->
+              <nav class="footer-nav">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="capital_markets.html">Capital Markets</a></li>
+                  <li><a href="wealth.html">Wealth</a></li>
+                  <li><a href="insights.html">Insights</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+      <div class="footer-row">
+      <div class="footer-bottom">
+        &copy; 2025 MCM Partners. All rights reserved.
+      </div>
+    </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Simple toggle for mobile navigation menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+  
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      navMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
